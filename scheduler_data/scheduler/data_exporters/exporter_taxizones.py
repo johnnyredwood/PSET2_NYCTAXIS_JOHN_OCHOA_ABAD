@@ -17,7 +17,7 @@ SNOWFLAKE_PRIVATE_KEY = get_secret_value('RSA_PRIVATE')
 SNOWFLAKE_DATABASE = get_secret_value('DATABASE')
 SNOWFLAKE_SCHEMA = get_secret_value('SCHEMA')
 SNOWFLAKE_WAREHOUSE = get_secret_value('WAREHOUSE')
-SNOWFLAKE_TABLE = 'NEWYORK_TAXIS_ZONES3'
+SNOWFLAKE_TABLE = 'NEWYORK_TAXIS_ZONES'
 
 def get_snowflake_conn():
     return snowflake.connector.connect(
