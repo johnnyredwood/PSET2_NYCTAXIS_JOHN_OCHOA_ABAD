@@ -3,6 +3,9 @@ Data Mining
 Proyecto 02
 John Ochoa Abad 345743
 
+#Github Link:
+https://github.com/johnnyredwood/PSET2_NYCTAXIS_JOHN_OCHOA_ABAD
+
 #Descripción del proyecto:
 En el presente proyecto pude llevar a cabo una ingesta masiva de datos (aprox. 800 millones de filas) correspondientes a
 los viajes de taxis de New York de tipo Amarillo y Verde desde el año 2015 hasta Julio del presente año 2025. Dichos datos
