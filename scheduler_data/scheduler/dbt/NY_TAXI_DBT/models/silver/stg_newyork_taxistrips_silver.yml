@@ -1,0 +1,124 @@
+version: 2
+
+models:
+  - name: stg_newyork_taxistrips_silver
+    description: "Viajes de taxi en NYC (2015-2025) estandarizados a nivel Silver"
+    tags: [silver]
+    columns:
+      - name: trip_id
+        description: "Identificador único del viaje"
+        tests:
+          - not_null
+          - unique
+
+      - name: vendor_id
+        description: "ID del proveedor de taxis"
+        tests:
+          - not_null
+
+      - name: passenger_count
+        description: "Cantidad de pasajeros en el viaje"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '> 0'
+
+      - name: trip_distance
+        description: "Distancia del viaje en millas"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '>= 0'
+
+      - name: pickup_datetime_utc
+        description: "Fecha y hora de inicio en UTC"
+        tests:
+          - not_null
+
+      - name: dropoff_datetime_utc
+        description: "Fecha y hora de fin en UTC"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true::
+              expression: "> pickup_datetime_utc"
+
+      - name: pickup_datetime_nyc
+        description: "Fecha y hora de inicio en hora local NYC"
+        tests:
+          - not_null
+
+      - name: dropoff_datetime_nyc
+        description: "Fecha y hora de fin en hora local NYC"
+        tests:
+          - not_null
+
+      - name: fare_amount
+        description: "Monto de la tarifa"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '>= 0'
+
+      - name: extra
+        description: "Cargos extra"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '>= 0'
+
+      - name: mta_tax
+        description: "Impuesto MTA"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '>= 0'
+
+      - name: tip_amount
+        description: "Monto de propina"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '>= 0'
+
+      - name: tolls_amount
+        description: "Monto de peajes"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '>= 0'
+
+      - name: improvement_surcharge
+        description: "Recargo de mejora"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '>= 0'
+
+      - name: total_amount
+        description: "Monto total del viaje"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '>= 0'
+
+      - name: pickup_location_id
+        description: "Zona de recogida"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '> 0'
+
+      - name: dropoff_location_id
+        description: "Zona de destino"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: '> 0'
+
+      - name: avg_speed_mph
+        description: "Velocidad promedio del viaje en millas/hora"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ' > 0'
+
+              

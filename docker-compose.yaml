@@ -1,0 +1,10 @@
+services:
+
+  scheduler:
+    image: mageai/mageai:latest
+    container_name: mage_qbo_scheduler
+    ports:
+      - "6789:6789"
+    volumes:
+      - "./scheduler_data:/home/src"
+    command: /app/run_app.sh mage start scheduler

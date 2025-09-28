@@ -1,0 +1,148 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_path: data_loaders/loader_and_exporter_taxis_yellow.py
+    file_source:
+      path: data_loaders/loader_and_exporter_taxis_yellow.py
+  downstream_blocks:
+  - loader_and_exporter_taxis_green
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: loader_and_exporter_taxis_yellow
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: loader_and_exporter_taxis_yellow
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    file_path: data_loaders/loader_and_exporter_taxis_green.py
+    file_source:
+      path: data_loaders/loader_and_exporter_taxis_green.py
+  downstream_blocks:
+  - dataloader_taxizones
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: loader_and_exporter_taxis_green
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_loader
+  upstream_blocks:
+  - loader_and_exporter_taxis_yellow
+  uuid: loader_and_exporter_taxis_green
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - exporter_taxizones
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: dataloader_taxizones
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks:
+  - loader_and_exporter_taxis_green
+  uuid: dataloader_taxizones
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - transformer_taxis_yellow_bronze
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: exporter_taxizones
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - dataloader_taxizones
+  uuid: exporter_taxizones
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - transformer_taxis_silver
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: transformer_taxis_yellow_bronze
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - exporter_taxizones
+  uuid: transformer_taxis_yellow_bronze
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - transformer_taxis_gold
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: transformer_taxis_silver
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - transformer_taxis_yellow_bronze
+  uuid: transformer_taxis_silver
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: transformer_taxis_gold
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - transformer_taxis_silver
+  uuid: transformer_taxis_gold
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2025-09-19 05:20:00.999661+00:00'
+data_integration: null
+description: pipeline_taxis_nyc
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: pipeline_taxis_nyc
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: pipeline_taxis_nyc
+variables_dir: /home/src/mage_data/scheduler
+widgets: []

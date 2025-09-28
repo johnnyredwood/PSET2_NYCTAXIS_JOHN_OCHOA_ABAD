@@ -1,0 +1,166 @@
+version: 2
+
+models:
+  - name: fct_trips
+    description: "Tabla de hechos de viajes de taxi en NYC"
+    tags: [gold]
+    
+    columns:
+      - name: trip_id
+        description: "Identificador único del viaje"
+        tests:
+          - not_null
+          - unique
+
+      # Tests de relaciones con dimensiones
+      - name: pickup_date_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date_pickup')
+              field: pickup_date_sk
+
+      - name: dropoff_date_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date_dropoff')
+              field: dropoff_date_sk
+
+      - name: pickup_time_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_time_pickup')
+              field: pickup_time_sk
+
+      - name: dropoff_time_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_time_dropoff')
+              field: dropoff_time_sk
+
+      - name: pickup_zone_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_zone_pickup')
+              field: pickup_zone_sk
+
+      - name: dropoff_zone_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_zone_dropoff')
+              field: dropoff_zone_sk
+
+      - name: vendor_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_vendor')
+              field: vendor_sk
+
+      - name: rate_code_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_rate_code')
+              field: rate_code_sk
+
+      - name: payment_type_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_payment_type')
+              field: payment_type_sk
+
+      - name: service_type_sk
+        tests:
+          - relationships:
+              to: ref('dim_service_type')
+              field: service_type_sk
+
+      - name: trip_type_sk
+        tests:
+          - relationships:
+              to: ref('dim_trip_type')
+              field: trip_type_sk
+
+      # Tests de los viajess
+      - name: trip_duration_seconds
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"
+
+      - name: avg_speed_mph
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"
+
+      - name: passenger_count
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"
+
+      - name: trip_distance
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"
+
+      - name: fare_amount
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: extra
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: mta_tax
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: tip_amount
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: tolls_amount
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: improvement_surcharge
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: total_amount
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: congestion_surcharge
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: tip_percentage
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"

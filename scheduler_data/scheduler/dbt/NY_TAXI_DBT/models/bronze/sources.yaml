@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+    schema: TAXIS
+    tables:
+      - name: NY_TAXIS_YELLOW_BRONZE
+      - name: NY_TAXIS_GREEN_BRONZE
+      - name: NEWYORK_TAXIS_ZONES
