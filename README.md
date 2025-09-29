@@ -47,8 +47,9 @@ SNOWFLAKE_SCHEMA=[valor]
 
 Para mi caso a manera de otorgar mayor seguridad estoy generando la conexión con llave privada (RSA) la cual debe ser colocada en una sola línea con caracteres de escape \n para
 saltos de línea de la clave. De igual forma, se puede emplear conexión únicamente con el password del usuario a continuación pero se necesitaría ajustar el método de conexión del 
-Jupyter Notebook sustituyendo private_key por password en los argumentos de la conexión. Esto se manejo de esta manera para en el docker compose únicamente tener el servicio de Mage
-sin requerir de un servicio adicional de Jupyter Notebook
+Jupyter Notebook sustituyendo private_key por password en los argumentos de la conexión y de igual manera sería necesario ajustar en todos los métodos del pipeline de Mage la forma de 
+conexión a manera de conectarse mediante solo password y no private key. Esto del Jupyter Notebook se manejo de esta manera para en el docker compose únicamente tener el servicio de Mage
+sin requerir de un servicio adicional de Jupyter Notebook. Por último para saber como generar la llave privada y pública para Snowflake revisar este link: https://docs.snowflake.com/en/user-guide/key-pair-auth
 
 
 #Descripción y diagrama de arquitectura (bronze/silver/gold) y orquestación en Mage.
