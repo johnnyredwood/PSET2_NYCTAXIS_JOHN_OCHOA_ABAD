@@ -51,6 +51,10 @@ Jupyter Notebook sustituyendo private_key por password en los argumentos de la c
 conexión a manera de conectarse mediante solo password y no private key. Esto del Jupyter Notebook se manejo de esta manera para en el docker compose únicamente tener el servicio de Mage
 sin requerir de un servicio adicional de Jupyter Notebook. Por último para saber como generar la llave privada y pública para Snowflake revisar este link: https://docs.snowflake.com/en/user-guide/key-pair-auth
 
+*Importante*
+
+Destaco que en mi data_analysis.ipynb script para la ejecución de las queries estoy llamando directamente a la database ny_taxi y al schema taxis_gold para replicar el uso de dichas queries llamar a su esquema y database
+de la misma manera o actualizar las queries con el nombre de database y schema de su selección
 
 #Descripción y diagrama de arquitectura (bronze/silver/gold) y orquestación en Mage.
 
